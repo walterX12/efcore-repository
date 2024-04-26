@@ -1,0 +1,73 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;netstandard2.1;net6.0</TargetFrameworks>
+    <!--<TargetFrameworks>net6.0</TargetFrameworks>-->
+    
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+    <!--<LangVersion>12.0</LangVersion>-->
+    <!--<SignAssembly>true</SignAssembly>-->
+    <WarningLevel>5</WarningLevel>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <AssemblyVersion>0.0.0.1</AssemblyVersion>
+    <FileVersion>0.0.0.1</FileVersion>
+    <Version>0.0.0-alpha1</Version>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <!--<EnableStrictModeForCompatibleFrameworksInPackage>true</EnableStrictModeForCompatibleFrameworksInPackage>-->
+    <!--<GenerateCompatibilitySuppressionFile>true</GenerateCompatibilitySuppressionFile>-->
+    <!--<PackageValidationBaselineVersion>7.0.0</PackageValidationBaselineVersion>-->
+    <EnableStrictModeForCompatibleTfms>true</EnableStrictModeForCompatibleTfms>
+    <EnablePackageValidation>true</EnablePackageValidation>
+    <AnalysisMode>AllEnabledByDefault</AnalysisMode>
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
+    <IsTrimmable>true</IsTrimmable>
+    <Title>Repository pattern for EF Core</Title>
+    <Authors>Walter</Authors>
+    <Description>Repository pattern implementation focused on EF Core.</Description>
+    <PackageProjectUrl>https://github.com/walterX12/efcore-repository</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/walterX12/efcore-repository</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>Efcore;Repository</PackageTags>
+  </PropertyGroup>
+  
+  
+  <ItemGroup Condition="'$(TargetFramework)' == 'net6.0'">
+    <PackageReference Include="Microsoft.EntityFrameworkCore">
+      <Version>6.0.29</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions">
+      <Version>6.0.29</Version>
+    </PackageReference>
+  </ItemGroup>
+
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+    <PackageReference Include="Microsoft.EntityFrameworkCore">
+      <Version>3.1.32</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions">
+      <Version>3.1.32</Version>
+    </PackageReference>
+  </ItemGroup>
+
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.1'">
+    <PackageReference Include="Microsoft.EntityFrameworkCore">
+      <Version>5.0.17</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions">
+      <Version>5.0.17</Version>
+    </PackageReference>
+  </ItemGroup>
+
+</Project>
+
+
