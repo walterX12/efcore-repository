@@ -10,14 +10,14 @@ namespace RepositoryPattern.Repository.EfCore
     /// <typeparam name="TEntity">Type of Entity</typeparam>
     /// <typeparam name="TEntityId">Entity identifier (typocally int or string)</typeparam>
     /// <typeparam name="TDbContext">EF core DbContext</typeparam>
-    public class RepositoryEfCore<TEntity, TEntityId, TDbContext> : IRepository<TEntity, TEntityId>
-        where TEntity : class, IIdentifiable<TEntityId>
+    public class RepositoryWithKeyEfCore<TEntity, TDbContext> : IRepository<TEntity>
+        where TEntity : class
         where TDbContext : DbContext
     {
         private readonly TDbContext context;
         private bool disposed;
 
-        public RepositoryEfCore(TDbContext context)
+        public RepositoryWithKeyEfCore(TDbContext context)
         {
             this.context = context;
         }
@@ -36,12 +36,12 @@ namespace RepositoryPattern.Repository.EfCore
 
 
 #if NET5_0_OR_GREATER
-        public TEntity? GetById(TEntityId id)
+        public TEntity? GetById<TEntityId>(TEntityId id)  where TEntityId : struct
         {
             return context.Set<TEntity>().Find(id);
         }
 
-        public async Task<TEntity?> GetByIdAsync(TEntityId id)
+        public async Task<TEntity?> GetByIdAsync<TEntityId>(TEntityId id)  where TEntityId : struct
         {
             return await context.Set<TEntity>().FindAsync(id).ConfigureAwait(false);
         }
@@ -59,12 +59,12 @@ namespace RepositoryPattern.Repository.EfCore
 
 #else
 
-        public TEntity GetById(TEntityId id)
+        public TEntity GetById<TEntityId>(TEntityId id)  where TEntityId : struct
         {
             return context.Set<TEntity>().Find(id);
         }
 
-        public async Task<TEntity> GetByIdAsync(TEntityId id)
+        public async Task<TEntity> GetByIdAsync<TEntityId>(TEntityId id)  where TEntityId : struct
         {
             return await context.Set<TEntity>().FindAsync(id).ConfigureAwait(false);
         }

@@ -8,7 +8,7 @@ namespace Repository
     /// Class with identifier of the type <see cref="T"/>
     /// Typical is int or string
     /// </summary>
-    /// <typeparam name="T">Datatype of the identyfier</typeparam>
+    /// <typeparam name="T">Datatype of the identifier</typeparam>
     public  interface IIdentifiable<T>
     {
         T Id { get; }

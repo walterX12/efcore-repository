@@ -14,9 +14,9 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <AssemblyVersion>0.0.0.1</AssemblyVersion>
-    <FileVersion>0.0.0.1</FileVersion>
-    <Version>0.0.0-alpha1</Version>
+    <AssemblyVersion>0.0.0.2</AssemblyVersion>
+    <FileVersion>0.0.0.2</FileVersion>
+    <Version>0.0.0-alpha2</Version>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -36,6 +36,8 @@
     <RepositoryUrl>https://github.com/walterX12/efcore-repository</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>Efcore;Repository</PackageTags>
+    <PackageId>RepositoryPatternEfCoreSimple</PackageId>
+    <PackageReadmeFile>Readme.md</PackageReadmeFile>
   </PropertyGroup>
   
   
@@ -66,6 +68,14 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions">
       <Version>5.0.17</Version>
     </PackageReference>
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <None Include="..\Readme.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

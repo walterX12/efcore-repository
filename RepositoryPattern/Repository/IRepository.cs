@@ -11,8 +11,8 @@ namespace Repository
     /// </summary>
     /// <typeparam name="TEntity"></typeparam>
     /// <typeparam name="TEntityId"></typeparam>
-    public interface IRepository<TEntity, TEntityId> : IDisposable
-        where TEntity : class, IIdentifiable<TEntityId>
+    public interface IRepository<TEntity> : IDisposable
+        where TEntity : class
     {
         void Add(TEntity entity);
 
@@ -23,9 +23,9 @@ namespace Repository
 
         Task<TEntity?> FindAsync(Expression<Func<TEntity, bool>> predicate);
 
-        TEntity? GetById(TEntityId id);
+        TEntity? GetById<TEntityId>(TEntityId id)  where TEntityId : struct;
 
-        Task<TEntity?> GetByIdAsync(TEntityId id);
+        Task<TEntity?> GetByIdAsync<TEntityId>(TEntityId id)  where TEntityId : struct;
 
 
 #else
@@ -33,9 +33,9 @@ namespace Repository
 
         Task<TEntity> FindAsync(Expression<Func<TEntity, bool>> predicate);
 
-        TEntity GetById(TEntityId id);
+        TEntity GetById<TEntityId>(TEntityId id)  where TEntityId : struct;
 
-        Task<TEntity> GetByIdAsync(TEntityId id);
+        Task<TEntity> GetByIdAsync<TEntityId>(TEntityId id)  where TEntityId : struct;
 #endif
 
 
