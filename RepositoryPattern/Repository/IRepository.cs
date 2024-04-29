@@ -18,7 +18,7 @@ namespace Repository
 
         void AddRange(IEnumerable<TEntity> entity);
 
-#if NET5_0_OR_GREATER
+//#if NET5_0_OR_GREATER
         TEntity? Find(Expression<Func<TEntity, bool>> predicate);
 
         Task<TEntity?> FindAsync(Expression<Func<TEntity, bool>> predicate);
@@ -27,16 +27,20 @@ namespace Repository
 
         Task<TEntity?> GetByIdAsync<TEntityId>(TEntityId id)  where TEntityId : struct;
 
+        int Count(Expression<Func<TEntity, bool>> predicate);
 
-#else
-        TEntity Find(Expression<Func<TEntity, bool>> predicate);
+        Task<int> CountAsync(Expression<Func<TEntity, bool>> predicate);
 
-        Task<TEntity> FindAsync(Expression<Func<TEntity, bool>> predicate);
 
-        TEntity GetById<TEntityId>(TEntityId id)  where TEntityId : struct;
+        //#else
+        //        TEntity Find(Expression<Func<TEntity, bool>> predicate);
 
-        Task<TEntity> GetByIdAsync<TEntityId>(TEntityId id)  where TEntityId : struct;
-#endif
+        //        Task<TEntity> FindAsync(Expression<Func<TEntity, bool>> predicate);
+
+        //        TEntity GetById<TEntityId>(TEntityId id)  where TEntityId : struct;
+
+        //        Task<TEntity> GetByIdAsync<TEntityId>(TEntityId id)  where TEntityId : struct;
+        //#endif
 
 
         IEnumerable<TEntity> GetList(Expression<Func<TEntity, bool>> predicate);
