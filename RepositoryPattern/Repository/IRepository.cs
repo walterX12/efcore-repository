@@ -16,6 +16,8 @@ namespace Repository
     {
         void Add(TEntity entity);
 
+        Task AddAsync(TEntity entity);
+
         void AddRange(IEnumerable<TEntity> entity);
 
 //#if NET5_0_OR_GREATER

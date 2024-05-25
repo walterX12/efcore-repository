@@ -28,6 +28,12 @@ namespace RepositoryPattern.Repository.EfCore
             context.SaveChanges();
         }
 
+        public async Task AddAsync(TEntity entity)
+        {
+            await context.Set<TEntity>().AddAsync(entity).ConfigureAwait(false);
+            await context.SaveChangesAsync().ConfigureAwait(false);
+        }
+
         public void AddRange(IEnumerable<TEntity> entity)
         {
             context.Set<TEntity>().AddRange(entity);
@@ -124,6 +130,12 @@ namespace RepositoryPattern.Repository.EfCore
         {
             context.Entry(entity).State = EntityState.Modified;
             context.SaveChanges();
+        }
+
+        public async Task UpdateAsync(TEntity entity)
+        {
+            context.Entry(entity).State = EntityState.Modified;
+            await context.SaveChangesAsync().ConfigureAwait(false);
         }
 
         public void Remove(TEntity entity)
