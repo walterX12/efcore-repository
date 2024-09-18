@@ -15,7 +15,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <GlobalVersion>0.0.0.5</GlobalVersion>
+    <GlobalVersion>0.0.5</GlobalVersion>
     <AssemblyVersion>$(GlobalVersion)</AssemblyVersion>
     <FileVersion>$(GlobalVersion)</FileVersion>
     <Version>$(GlobalVersion)</Version>
@@ -40,6 +40,7 @@
     <PackageTags>Efcore;Repository</PackageTags>
     <PackageId>RepositoryPatternEfCoreSimple</PackageId>
     <PackageReadmeFile>Readme.md</PackageReadmeFile>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
 
@@ -91,15 +92,20 @@
       <PackagePath>\</PackagePath>
     </None>
   </ItemGroup>
-  
 
-  <Target Name="PublishNuGet" AfterTargets="Build" Condition="'$(Configuration)' == 'Release' ">
-    <Exec Command="dotnet pack $(ProjectPath)" />
-    <!--
-    <Exec Command="dotnet nuget push $(ProjectDir)bin\Release\$(PackageId).$(PackageVersion).nupkg - -source https://api.nuget.org/v3/index.json - -api-key replace_by_your_id" />
-    -->
+  <Target Name="PublishNuGetLocally" AfterTargets="Pack">
+    <!--This is replaced by <GeneratePackageOnBuild>true</GeneratePackageOnBuild>-->
+    <!--<Exec Command="dotnet pack $(ProjectPath)" />-->
+    <Exec Command="dotnet nuget delete $(PackageId) $(PackageVersion)   --source $(UserProfile)\.nuget\packages  --non-interactive" ContinueOnError="WarnAndContinue" />
+    <Exec Command="dotnet nuget push $(OutputPath)$(PackageId).$(PackageVersion).nupkg   --source $(UserProfile)\.nuget\packages " />
+  </Target>
+
+  <Target Name="PublishNuGet" AfterTargets="Pack" Condition="'$(Configuration)' == 'Release' ">
+    <!--Prerequsity steps:
+    1. nuget sources Add -Name nuget.org -Source https://api.nuget.org/v3/index.json
+    2. nuget setapikey ***** -Source nuget.org-->    
+    <Exec Command="dotnet nuget push $(OutputPath)$(PackageId).$(PackageVersion).nupkg --source nuget.org" />
   </Target>  
-
 </Project>
 
 
