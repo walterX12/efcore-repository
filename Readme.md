@@ -96,6 +96,9 @@ public class MyEntityRepository : RepositoryEfCoreCleanable<MyEntity, MyDbContex
 
 ## Versions
 
+### 0.0.6
+1. Added EfCoreCleanable<TDbContext>` to enable priodical cleaning only using context (without the need to define Entity)
+
 ### 0.0.5
 Improved logging to support parameters
 
